@@ -3,6 +3,7 @@ package it.polito.tdp.meteo;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +11,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 
 public class MeteoController {
+	 Model model = new Model();
+	
+	 public void setModel(Model model) {
+		 this.model = model;
+		 boxMese.setItems(model.getChoice());
+	 }
 
 	@FXML
 	private ResourceBundle resources;
@@ -18,7 +25,7 @@ public class MeteoController {
 	private URL location;
 
 	@FXML
-	private ChoiceBox<?> boxMese;
+	private ChoiceBox<String> boxMese;
 
 	@FXML
 	private Button btnCalcola;
@@ -31,11 +38,19 @@ public class MeteoController {
 
 	@FXML
 	void doCalcolaSequenza(ActionEvent event) {
-
+		int mese =Integer.parseInt(boxMese.getValue());
+		long start = System.nanoTime();
+		model.cercaComboPubblico();
+		txtResult.clear();
+		txtResult.setText("PERCORSO MIGLIORE PER IL MESE "+mese+" =\n"+model.trovaMigliore(mese));
+		long stop = System.nanoTime();
+		txtResult.appendText("\ntempo di esecuzione="+((stop-start)/1e6));
 	}
 
 	@FXML
 	void doCalcolaUmidita(ActionEvent event) {
+		String mese =boxMese.getValue();
+		txtResult.setText(model.getUmiditaMedia(Integer.parseInt(mese)));
 
 	}
 
