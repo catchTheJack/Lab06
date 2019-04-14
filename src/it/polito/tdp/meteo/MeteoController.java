@@ -16,6 +16,7 @@ public class MeteoController {
 	 public void setModel(Model model) {
 		 this.model = model;
 		 boxMese.setItems(model.getChoice());
+		 model.cercaComboPubblico();
 	 }
 
 	@FXML
@@ -40,7 +41,6 @@ public class MeteoController {
 	void doCalcolaSequenza(ActionEvent event) {
 		int mese =Integer.parseInt(boxMese.getValue());
 		long start = System.nanoTime();
-		model.cercaComboPubblico();
 		txtResult.clear();
 		txtResult.setText("PERCORSO MIGLIORE PER IL MESE "+mese+" =\n"+model.trovaMigliore(mese));
 		long stop = System.nanoTime();
