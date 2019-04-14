@@ -5,7 +5,6 @@ import java.util.List;
 
 import it.polito.tdp.meteo.bean.Citta;
 import it.polito.tdp.meteo.bean.Combo;
-import it.polito.tdp.meteo.bean.SimpleCity;
 import it.polito.tdp.meteo.db.MeteoDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +13,6 @@ public class Model {
 
 	private final static int COST = 100;
 	private final static int NUMERO_GIORNI_CITTA_CONSECUTIVI_MIN = 3;
-	private final static int NUMERO_GIORNI_CITTA_MAX = 6;
 	private final static int NUMERO_GIORNI_TOTALI = 15;
 	
 	private MeteoDAO mdao = new MeteoDAO();
